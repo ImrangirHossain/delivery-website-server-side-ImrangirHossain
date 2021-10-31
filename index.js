@@ -42,7 +42,6 @@ async function run() {
         //  GET SINGLE SERVICES 
         app.get('/services/:id', async(req, res) =>{
             const id = req.params.id;
-            console.log('getting single service', id)
             const query = {_id: ObjectId(id)};
             const service = await servicesCollection.findOne(query);
             res.send(service);
@@ -51,7 +50,6 @@ async function run() {
         //  GET SINGLE ORDER 
         app.get('/orders/:id', async(req, res) =>{
             const id = req.params.id;
-            console.log('getting single service', id)
             const query = {_id: ObjectId(id)};
             const service = await servicesCollection.findOne(query);
             res.send(service);
@@ -61,7 +59,6 @@ async function run() {
         app.post('/services', async (req, res) => {
             const service = req.body;
             const result = await servicesCollection.insertOne(service);
-            console.log(result);
             res.json(result)
         });
         
@@ -84,7 +81,6 @@ async function run() {
                 },
             };
             const result = await orderCollection.updateOne(filter, updateDoc, options)
-            console.log('updating', id)
             res.json(result)
         })
         // DELETE API
@@ -94,7 +90,6 @@ async function run() {
             console.log(id)
             const query = { _id: ObjectId(id)};
             const result = await orderCollection.deleteOne(query);
-            console.log('deleting user with id ', result);
             res.json(result);
         })
         
